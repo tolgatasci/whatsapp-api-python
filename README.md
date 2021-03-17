@@ -3,7 +3,8 @@
 
 First one register and get device https://whatsapp.securedatainfo.com/
 
-Use git clone https://github.com/tolgatasci/whatsapp-api-python
+Use 
+    git clone https://github.com/tolgatasci/whatsapp-api-python
 
 Load module
 
