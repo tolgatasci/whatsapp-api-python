@@ -25,8 +25,11 @@ Example
     print(show_message)
     
     files = {'file': ('test.jpg', open('test.jpg', 'rb'))}
-    send_message = api.send_message(message_body="test", phone_numbers=["+905467751802"], files=files)
-    print(send_message)
+    # {"phone": "+905467751802", "message": "diffrent message"}
+    send_message = api.send_message(message_body="test",
+                                    phone_numbers=[{"phone": "+905467751802", "message": "test xxx"}], files=files)
+    send_message = api.send_message(message_body="test",
+                                    phone_numbers=[{"phone": "+905467751802", "message": "test xxx"}])
   
     send_code = api.send_code(code="053666", phone="+905467751802")
     print(send_code) 
