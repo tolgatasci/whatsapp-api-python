@@ -26,6 +26,7 @@ Example
     
     files = {'file': ('test.jpg', open('test.jpg', 'rb'))}
     # {"phone": "+905467751802", "message": "diffrent message"}
+    # If you don't want it, you can delete the key. "message"
     send_message = api.send_message(message_body="test",
                                     phone_numbers=[{"phone": "+905467751802", "message": "test xxx"}], files=files)
     send_message = api.send_message(message_body="test",
