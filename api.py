@@ -1,5 +1,5 @@
 import requests
-import json
+
 
 class Api:
     device_token = ""
@@ -24,9 +24,7 @@ class Api:
             resp = requests.post(self.base_url + method, data=data)
             return resp.json()
         else:
-
             resp = requests.post(self.base_url + method, files=files, data=data)
-
             return resp.json()
 
     def messages(self, page=1, limit=20, phone=None, status=None):
@@ -63,24 +61,27 @@ class Api:
             if not isinstance(phone_numbers, list):
                 raise ValueError('phone_numbers required array')
             data = {
-                "message_body":message_body
+                "message_body": message_body
             }
 
             for idx, phone in enumerate(phone_numbers):
-                data["phone_numbers["+str(idx)+"]"] = phone
-
+                data["phone_numbers[" + str(idx) + "][phone]"] = phone['phone']
+                if 'message' in phone:
+                    data["phone_numbers[" + str(idx) + "][message]"] = phone['message']
             return self.POST(method="message/send", data=data, files=files)
         except Exception as error:
             return str(error)
+
     def send_code(self, code=None, phone=""):
         try:
             data = {
-                "code":code,
-                "phone_number":phone
+                "code": code,
+                "phone_number": phone
             }
             return self.POST(method="message/send_code", data=data)
         except Exception as error:
             return str(error)
+
     def info(self):
         try:
 
